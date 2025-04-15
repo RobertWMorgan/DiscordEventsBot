@@ -1,6 +1,9 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
+const express = require('express');
+const app = express();
 
+// Initialize Discord Client
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent],
 });
@@ -8,15 +11,16 @@ const client = new Client({
 // To track the last reminded event ID
 let lastRemindedEventId = null;
 
+// Discord Bot Ready
 client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
   setInterval(() => {
     checkScheduledEvents();
-  }, 5 * 60 * 1000); // every 5 minutes
+  }, 5 * 60 * 1000); // Check every 5 minutes
 });
 
 async function checkScheduledEvents() {
-  const guildId = process.env.GUILD_ID;
+  const guildId = process.env.GUILD_ID; 
   const guild = client.guilds.cache.get(guildId);
 
   if (!guild) {
@@ -39,10 +43,10 @@ async function checkScheduledEvents() {
         sendReminder(event);
         lastRemindedEventId = event.id; // Store the ID of the reminded event
       } else {
+        const currentTime = new Date().toISOString(); 
         console.log(`[${currentTime}] Event ${event.name} is not within the 3-hour reminder window or has already been reminded.`);
       }
     });
-
   } catch (error) {
     console.error('Error fetching events:', error);
   }
@@ -73,4 +77,14 @@ async function sendReminder(event) {
   }
 }
 
+// Discord login with bot token
 client.login(process.env.TOKEN);
+
+// Express server setup
+app.get('/', (req, res) => {
+  res.send('Bot is running!');
+});
+
+app.listen(3000, () => {
+  console.log('Express server is running on port 3000');
+});
