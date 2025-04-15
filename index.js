@@ -16,7 +16,7 @@ client.once('ready', () => {
 });
 
 async function checkScheduledEvents() {
-  const guildId = '1329139588312338513';
+  const guildId = process.env.GUILD_ID;
   const guild = client.guilds.cache.get(guildId);
 
   if (!guild) {
@@ -49,8 +49,8 @@ async function checkScheduledEvents() {
 }
 
 async function sendReminder(event) {
-  const channelId = '1353680333345919067'; 
-  const roleIdToPing = '1329144117732835531'; 
+  const channelId = process.env.CHANNEL_ID; 
+  const roleIdToPing = process.env.ROLE_ID; 
 
   try {
     // Checking if the event is part of the series
