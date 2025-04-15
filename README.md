@@ -1,0 +1,2 @@
+"# DiscordEventsBot" 
+start of readme
