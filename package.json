@@ -1,0 +1,23 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "\"# DiscordEventsBot\" \r start of readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobertWMorgan/DiscordEventsBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobertWMorgan/DiscordEventsBot/issues"
+  },
+  "homepage": "https://github.com/RobertWMorgan/DiscordEventsBot#readme",
+  "dependencies": {
+    "discord.js": "^14.18.0"
+  }
+}
